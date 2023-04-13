@@ -71,7 +71,7 @@ class uploadFile():
 			# arcpy.Delete_management(r'C:\Users\Administrator\Documents\ArcGIS\Projects\DEV_Dukcapil\DEV_Dukcapil.gdb\giskemendagri.sde.Batas_Provinsi_2023\giskemendagri.sde.AGR_VISUAL_PROP_FIX')
 		
 			# Create Intermediate Table - PROPINSI
-			data_fs_prop = 'giskemendagri.sde.Batas_Provinsi_2023'
+			data_fs_prop = r'C:\Users\Administrator\Documents\ArcGIS\Projects\DEV_Dukcapil\DEV_Dukcapil.gdb\giskemendagri.sde.Batas_Provinsi_2023'
 			int_table_prop = 'AGR_VISUAL_PROP_FIX'
 			
 			arcpy.conversion.FeatureClassToFeatureClass(data_fs_prop, output_gdb, int_table_prop, '', 'no_prop "NO_PROP" true true false 4 Long 0 10,First,#,data_fs_prop,no_prop,-1,-1;nama_prop "NAMA_PROP" true true false 8000 Text 0 0,First,#,data_fs_prop,nama_prop,0,8000;st_area(shape) "st_area(shape)" false false true 0 Double 0 0,First,#,data_fs_prop,st_area(shape),-1,-1;st_length(shape) "st_length(shape)" false false true 0 Double 0 0,First,#,data_fs_prop,st_length(shape),-1,-1', '')
@@ -90,7 +90,7 @@ class uploadFile():
 			# arcpy.Delete_management(r'C:\Users\Administrator\Documents\ArcGIS\Projects\DEV_Dukcapil\DEV_Dukcapil.gdb\giskemendagri.sde.Batas_Provinsi_2023\giskemendagri.sde.AGR_VISUAL_KAB_FIX')
 		
 			# Create Intermediate Table - KABUPATEN
-			data_fs_kab = 'giskemendagri.sde.Batas_Kabupaten_2023'
+			data_fs_kab = r'C:\Users\Administrator\Documents\ArcGIS\Projects\DEV_Dukcapil\DEV_Dukcapil.gdb\giskemendagri.sde.Batas_Kabupaten_2023'
 			int_table_kab = 'AGR_VISUAL_KAB_FIX'
 			
 			arcpy.conversion.FeatureClassToFeatureClass(data_fs_kab, output_gdb, int_table_kab, '', 'no_prop "NO_PROP" true true false 4 Long 0 10,First,#,data_fs_kab,no_prop,-1,-1;no_kab "NO_KAB" true true false 4 Long 0 10,First,#,data_fs_kab,no_kab,-1,-1;kode_prop_spatial "KODE_PROP_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kab,kode_prop_spatial,-1,-1;kode_kab_spatial "KODE_KAB_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kab,kode_kab_spatial,-1,-1;jumlah_desa "JUMLAH_DESA" true true false 4 Long 0 10,First,#,data_fs_kab,jumlah_desa,-1,-1;jumlah_kelurahan "JUMLAH_KELURAHAN" true true false 4 Long 0 10,First,#,data_fs_kab,jumlah_kelurahan,-1,-1;nama_prop "NAMA_PROP" true true false 8000 Text 0 0,First,#,data_fs_kab,nama_prop,0,8000;nama_kab "NAMA_KAB" true true false 8000 Text 0 0,First,#,data_fs_kab,nama_kab,0,8000;st_area(shape) "st_area(shape)" false false true 0 Double 0 0,First,#,data_fs_kab,st_area(shape),-1,-1;st_length(shape) "st_length(shape)" false false true 0 Double 0 0,First,#,data_fs_kab,st_length(shape),-1,-1', '')
@@ -109,7 +109,7 @@ class uploadFile():
 			# arcpy.Delete_management(r'C:\Users\Administrator\Documents\ArcGIS\Projects\DEV_Dukcapil\DEV_Dukcapil.gdb\giskemendagri.sde.Batas_Provinsi_2023\giskemendagri.sde.AGR_VISUAL_KEC_FIX')
 		
 			# Create Intermediate Table - KECAMATAN
-			data_fs_kec = 'giskemendagri.sde.Batas_Kecamatan_2023'
+			data_fs_kec = r'C:\Users\Administrator\Documents\ArcGIS\Projects\DEV_Dukcapil\DEV_Dukcapil.gdb\giskemendagri.sde.Batas_Kecamatan_2023'
 			int_table_kec = 'AGR_VISUAL_KEC_FIX'
 			
 			arcpy.conversion.FeatureClassToFeatureClass(data_fs_kec, output_gdb, int_table_kec, '', 'objectid "OBJECTID" true true false 4 Long 0 10,First,#,data_fs_kec,objectid,-1,-1;no_prop "NO_PROP" true true false 4 Long 0 10,First,#,data_fs_kec,no_prop,-1,-1;no_kab "NO_KAB" true true false 4 Long 0 10,First,#,data_fs_kec,no_kab,-1,-1;no_kec "NO_KEC" true true false 4 Long 0 10,First,#,data_fs_kec,no_kec,-1,-1;kode_prop_spatial "KODE_PROP_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kec,kode_prop_spatial,-1,-1;kode_kab_spatial "KODE_KAB_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kec,kode_kab_spatial,-1,-1;kode_kec_spatial "KODE_KEC_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kec,kode_kec_spatial,-1,-1;nama_prop "NAMA_PROP" true true false 8000 Text 0 0,First,#,data_fs_kec,nama_prop,0,8000;nama_kab "NAMA_KAB" true true false 8000 Text 0 0,First,#,data_fs_kec,nama_kab,0,8000;nama_kec "NAMA_KEC" true true false 8000 Text 0 0,First,#,data_fs_kec,nama_kec,0,8000;st_area(shape) "st_area(shape)" false false true 0 Double 0 0,First,#,data_fs_kec,st_area(shape),-1,-1;st_length(shape) "st_length(shape)" false false true 0 Double 0 0,First,#,data_fs_kec,st_length(shape),-1,-1', '')
@@ -128,7 +128,7 @@ class uploadFile():
 			# arcpy.Delete_management(r'C:\Users\Administrator\Documents\ArcGIS\Projects\DEV_Dukcapil\DEV_Dukcapil.gdb\giskemendagri.sde.Batas_Provinsi_2023\giskemendagri.sde.AGR_VISUAL_KEL_FIX')
 		
 			# Create Intermediate Table - KELURAHAN
-			data_fs_kel = 'giskemendagri.sde.Batas_Kelurahan_2023'
+			data_fs_kel = r'C:\Users\Administrator\Documents\ArcGIS\Projects\DEV_Dukcapil\DEV_Dukcapil.gdb\giskemendagri.sde.Batas_Kelurahan_2023'
 			int_table_kel = 'AGR_VISUAL_KEL_FIX'
 			
 			arcpy.conversion.FeatureClassToFeatureClass(data_fs_kel, output_gdb, int_table_kel, '', 'objectid "OBJECTID" true true false 4 Long 0 10,First,#,data_fs_kec,objectid,-1,-1;no_prop "NO_PROP" true true false 4 Long 0 10,First,#,data_fs_kec,no_prop,-1,-1;no_kab "NO_KAB" true true false 4 Long 0 10,First,#,data_fs_kec,no_kab,-1,-1;no_kec "NO_KEC" true true false 4 Long 0 10,First,#,data_fs_kec,no_kec,-1,-1;kode_prop_spatial "KODE_PROP_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kec,kode_prop_spatial,-1,-1;kode_kab_spatial "KODE_KAB_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kec,kode_kab_spatial,-1,-1;kode_kec_spatial "KODE_KEC_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kec,kode_kec_spatial,-1,-1;nama_prop "NAMA_PROP" true true false 8000 Text 0 0,First,#,data_fs_kec,nama_prop,0,8000;nama_kab "NAMA_KAB" true true false 8000 Text 0 0,First,#,data_fs_kec,nama_kab,0,8000;nama_kec "NAMA_KEC" true true false 8000 Text 0 0,First,#,data_fs_kec,nama_kec,0,8000;st_area(shape) "st_area(shape)" false false true 0 Double 0 0,First,#,data_fs_kec,st_area(shape),-1,-1;st_length(shape) "st_length(shape)" false false true 0 Double 0 0,First,#,data_fs_kec,st_length(shape),-1,-1', '')
