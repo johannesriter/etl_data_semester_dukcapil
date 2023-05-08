@@ -69,8 +69,8 @@ class uploadFile():
 		if area_level == 'PROP':
 			# Delete current data
 			try:
-				logProcess.logging_process_info('Success to delete AGR_VISUAL_PROP_FIX table.')
 				arcpy.Delete_management(r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_PROP_FIX')
+				logProcess.logging_process_info('Success to delete AGR_VISUAL_PROP_FIX table.')
 			except Exception as e:
 				logProcess.logging_process_error("Can't delete AGR_VISUAL_PROP_FIX data.")
 				pass
@@ -87,7 +87,7 @@ class uploadFile():
 			logProcess.logging_process_info("Joining table to feature class...")
 
 			input_prop = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_PROP_FIX'
-			join_prop = output_gdb + "\giskemendagri.sde.{}".format(table_name)
+			join_prop = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_202202_PROP_FIX'
 			arcpy.management.JoinField(input_prop, "no_prop", join_prop, "NO_PROP", None)
 
 			logProcess.logging_process_info("Success to join table between {} & {}.".format(int_table_prop, table_name))
@@ -95,8 +95,8 @@ class uploadFile():
 		elif area_level == 'KAB':
 			# Delete current data
 			try:
-				logProcess.logging_process_info('Success to delete AGR_VISUAL_KAB_FIX table.')
 				arcpy.Delete_management(r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_KAB_FIX')
+				logProcess.logging_process_info('Success to delete AGR_VISUAL_KAB_FIX table.')
 			except Exception as e:
 				logProcess.logging_process_error("Can't delete AGR_VISUAL_KAB_FIX data.")
 				pass
@@ -113,7 +113,7 @@ class uploadFile():
 			logProcess.logging_process_info("Joining table to feature class...")
 
 			input_kab = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_KAB_FIX'
-			join_kab = output_gdb + "\giskemendagri.sde.{}".format(table_name)
+			join_kab = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_202202_KAB_FIX'
 			arcpy.management.JoinField(input_kab, "kode_kab_spatial", join_kab, "KODE_KAB_SPATIAL", None)
 
 			logProcess.logging_process_info("Success to join table between {} & {}.".format(int_table_kab, table_name))
@@ -121,8 +121,8 @@ class uploadFile():
 		elif area_level == 'KEC':
 			# Delete current data
 			try:
-				logProcess.logging_process_info('Success to delete AGR_VISUAL_KEC_FIX table.')
 				arcpy.Delete_management(r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_KEC_FIX')
+				logProcess.logging_process_info('Success to delete AGR_VISUAL_KEC_FIX table.')
 			except Exception as e:
 				logProcess.logging_process_error("Can't delete AGR_VISUAL_KEC_FIX data.")
 				pass
@@ -139,7 +139,7 @@ class uploadFile():
 			logProcess.logging_process_info("Joining table to feature class...")
 
 			input_kec = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_KEC_FIX'
-			join_kec = output_gdb + "\giskemendagri.sde.{}".format(table_name)
+			join_kec = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_202202_KEC_FIX'
 			arcpy.management.JoinField(input_kec, "kode_kec_spatial", join_kec, "KODE_KEC_SPATIAL", None)
 
 			logProcess.logging_process_info("Success to join table between {} & {}.".format(int_table_kec, table_name))
@@ -147,8 +147,8 @@ class uploadFile():
 		else:
 			# Delete current data
 			try:
-				logProcess.logging_process_info('Success to delete AGR_VISUAL_KEL_FIX table.')
 				arcpy.Delete_management(r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_KEL_FIX')
+				logProcess.logging_process_info('Success to delete AGR_VISUAL_KEL_FIX table.')
 			except Exception as e:
 				logProcess.logging_process_error("Can't delete AGR_VISUAL_KEL_FIX data.")
 				pass
@@ -165,7 +165,7 @@ class uploadFile():
 			logProcess.logging_process_info("Joining table to feature class...")
 
 			input_kel = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_KEL_FIX'
-			join_kel = output_gdb + "\giskemendagri.sde.{}".format(table_name)
+			join_kel = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_202202_KEL_FIX'
 			arcpy.management.JoinField(input_kel, "kode_desa_spatial", join_kel, "KODE_DESA_SPATIAL", None)
 
 			logProcess.logging_process_info("Success to join table between {} & {}.".format(int_table_kel, table_name))
