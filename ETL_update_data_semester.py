@@ -88,7 +88,7 @@ class uploadFile():
 
 			input_prop = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_PROP_FIX'
 			join_prop = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_202202_PROP_FIX'
-			arcpy.management.JoinField(input_prop, "no_prop", join_prop, "NO_PROP", None)
+			arcpy.management.JoinField(input_prop, "no_prop", join_prop, "no_prop", None)
 
 			logProcess.logging_process_info("Success to join table between {} & {}.".format(int_table_prop, table_name))
 			
@@ -114,7 +114,7 @@ class uploadFile():
 
 			input_kab = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_KAB_FIX'
 			join_kab = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_202202_KAB_FIX'
-			arcpy.management.JoinField(input_kab, "kode_kab_spatial", join_kab, "KODE_KAB_SPATIAL", None)
+			arcpy.management.JoinField(input_kab, "kode_kab_spatial", join_kab, "kode_kab_spatial", None)
 
 			logProcess.logging_process_info("Success to join table between {} & {}.".format(int_table_kab, table_name))
 			
@@ -140,7 +140,7 @@ class uploadFile():
 
 			input_kec = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_KEC_FIX'
 			join_kec = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_202202_KEC_FIX'
-			arcpy.management.JoinField(input_kec, "kode_kec_spatial", join_kec, "KODE_KEC_SPATIAL", None)
+			arcpy.management.JoinField(input_kec, "kode_kec_spatial", join_kec, "kode_kec_spatial", None)
 
 			logProcess.logging_process_info("Success to join table between {} & {}.".format(int_table_kec, table_name))
 			
@@ -166,7 +166,7 @@ class uploadFile():
 
 			input_kel = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_KEL_FIX'
 			join_kel = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_202202_KEL_FIX'
-			arcpy.management.JoinField(input_kel, "kode_desa_spatial", join_kel, "KODE_DESA_SPATIAL", None)
+			arcpy.management.JoinField(input_kel, "kode_desa_spatial", join_kel, "kode_desa_spatial", None)
 
 			logProcess.logging_process_info("Success to join table between {} & {}.".format(int_table_kel, table_name))
 			
