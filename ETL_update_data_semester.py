@@ -4,6 +4,7 @@ import datetime
 import glob
 import os
 import os.path
+import psycopg2
 import sys
 
 arcpy.env.overwriteOutput = True
@@ -67,108 +68,100 @@ class uploadFile():
 		logProcess.logging_process_info("Generate intermediate table...")
 		
 		if area_level == 'PROP':
-			# Delete current data
+			# Create connection to database
 			try:
-				arcpy.Delete_management(r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_PROP_FIX')
-				logProcess.logging_process_info('Success to delete AGR_VISUAL_PROP_FIX table.')
+				db_conn = psycopg2.connect(database="giskemendagri", user="sde", password="Gis12345", host="gisdb.dukcapil.kemendagri.go.id", port="5433")
+				logProcess.logging_process_info("Success to connect database giskemendagri.")
 			except Exception as e:
-				logProcess.logging_process_error("Can't delete AGR_VISUAL_PROP_FIX data.")
-				pass
-		
-			# Create Intermediate Table - PROPINSI
-			data_fs_prop = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.Batas_Administrasi_BIG_2023\giskemendagri.sde.Batas_Provinsi_2023'
-			int_table_prop = 'AGR_VISUAL_PROP_FIX'
-			
-			arcpy.conversion.FeatureClassToFeatureClass(data_fs_prop, output_gdb, int_table_prop, '', 'no_prop "NO_PROP" true true false 4 Long 0 10,First,#,data_fs_prop,no_prop,-1,-1;nama_prop "NAMA_PROP" true true false 8000 Text 0 0,First,#,data_fs_prop,nama_prop,0,8000;st_area(shape) "st_area(shape)" false false true 0 Double 0 0,First,#,data_fs_prop,st_area(shape),-1,-1;st_length(shape) "st_length(shape)" false false true 0 Double 0 0,First,#,data_fs_prop,st_length(shape),-1,-1', '')
-			
-			logProcess.logging_process_info("Success to create intermediate table {}.".format(int_table_prop))
+				logProcess.logging_process_error("Error to connect database")
+				raise(e)
 
-			# Join table to feature class
-			logProcess.logging_process_info("Joining table to feature class...")
+			# Truncate table
+			try:
+				cursor = db_conn.cursor()
+				cursor.execute("DELETE FROM GISKEMENDAGRI.SDE.AGR_VISUAL_PROP_FIX")
+				rows_deleted = cursor.rowcount
+				db_conn.commit()
+				cursor.close()
+				logProcess.logging_process_info("Success to delete {} data.".format(rows_deleted))
+			except (Exception, psycopg2.DatabaseError) as e:
+				raise(e)
+			finally:
+				if db_conn is not None:
+					db_conn.close()
+			return rows_deleted
 
-			input_prop = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_PROP_FIX'
-			join_prop = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_202202_PROP_FIX'
-			arcpy.management.JoinField(input_prop, "no_prop", join_prop, "no_prop", None)
-
-			logProcess.logging_process_info("Success to join table between {} & {}.".format(int_table_prop, table_name))
-			
 		elif area_level == 'KAB':
-			# Delete current data
+			# Create connection to database
 			try:
-				arcpy.Delete_management(r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_KAB_FIX')
-				logProcess.logging_process_info('Success to delete AGR_VISUAL_KAB_FIX table.')
+				db_conn = psycopg2.connect(database="giskemendagri", user="sde", password="Gis12345", host="gisdb.dukcapil.kemendagri.go.id", port="5433")
+				logProcess.logging_process_info("Success to connect database giskemendagri.")
 			except Exception as e:
-				logProcess.logging_process_error("Can't delete AGR_VISUAL_KAB_FIX data.")
-				pass
-		
-			# Create Intermediate Table - KABUPATEN
-			data_fs_kab = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.Batas_Administrasi_BIG_2023\giskemendagri.sde.Batas_Kabupaten_2023'
-			int_table_kab = 'AGR_VISUAL_KAB_FIX'
-			
-			arcpy.conversion.FeatureClassToFeatureClass(data_fs_kab, output_gdb, int_table_kab, '', 'no_prop "NO_PROP" true true false 4 Long 0 10,First,#,data_fs_kab,no_prop,-1,-1;no_kab "NO_KAB" true true false 4 Long 0 10,First,#,data_fs_kab,no_kab,-1,-1;kode_prop_spatial "KODE_PROP_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kab,kode_prop_spatial,-1,-1;kode_kab_spatial "KODE_KAB_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kab,kode_kab_spatial,-1,-1;jumlah_desa "JUMLAH_DESA" true true false 4 Long 0 10,First,#,data_fs_kab,jumlah_desa,-1,-1;jumlah_kelurahan "JUMLAH_KELURAHAN" true true false 4 Long 0 10,First,#,data_fs_kab,jumlah_kelurahan,-1,-1;nama_prop "NAMA_PROP" true true false 8000 Text 0 0,First,#,data_fs_kab,nama_prop,0,8000;nama_kab "NAMA_KAB" true true false 8000 Text 0 0,First,#,data_fs_kab,nama_kab,0,8000;st_area(shape) "st_area(shape)" false false true 0 Double 0 0,First,#,data_fs_kab,st_area(shape),-1,-1;st_length(shape) "st_length(shape)" false false true 0 Double 0 0,First,#,data_fs_kab,st_length(shape),-1,-1', '')
-			
-			logProcess.logging_process_info("Success to create intermediate table {}.".format(int_table_kab))
+				logProcess.logging_process_error("Error to connect database")
+				raise(e)
 
-			# Join table to feature class
-			logProcess.logging_process_info("Joining table to feature class...")
-
-			input_kab = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_KAB_FIX'
-			join_kab = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_202202_KAB_FIX'
-			arcpy.management.JoinField(input_kab, "kode_kab_spatial", join_kab, "kode_kab_spatial", None)
-
-			logProcess.logging_process_info("Success to join table between {} & {}.".format(int_table_kab, table_name))
+			# Truncate table
+			try:
+				cursor = db_conn.cursor()
+				cursor.execute("DELETE FROM GISKEMENDAGRI.SDE.AGR_VISUAL_KAB_FIX")
+				rows_deleted = cursor.rowcount
+				db_conn.commit()
+				cursor.close()
+				logProcess.logging_process_info("Success to delete {} data.".format(rows_deleted))
+			except (Exception, psycopg2.DatabaseError) as e:
+				raise(e)
+			finally:
+				if db_conn is not None:
+					db_conn.close()
+			return rows_deleted
 			
 		elif area_level == 'KEC':
-			# Delete current data
+			# Create connection to database
 			try:
-				arcpy.Delete_management(r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_KEC_FIX')
-				logProcess.logging_process_info('Success to delete AGR_VISUAL_KEC_FIX table.')
+				db_conn = psycopg2.connect(database="giskemendagri", user="sde", password="Gis12345", host="gisdb.dukcapil.kemendagri.go.id", port="5433")
+				logProcess.logging_process_info("Success to connect database giskemendagri.")
 			except Exception as e:
-				logProcess.logging_process_error("Can't delete AGR_VISUAL_KEC_FIX data.")
-				pass
-		
-			# Create Intermediate Table - KECAMATAN
-			data_fs_kec = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.Batas_Administrasi_BIG_2023\giskemendagri.sde.Batas_Kecamatan_2023'
-			int_table_kec = 'AGR_VISUAL_KEC_FIX'
-			
-			arcpy.conversion.FeatureClassToFeatureClass(data_fs_kec, output_gdb, int_table_kec, '', 'objectid "OBJECTID" true true false 4 Long 0 10,First,#,data_fs_kec,objectid,-1,-1;no_prop "NO_PROP" true true false 4 Long 0 10,First,#,data_fs_kec,no_prop,-1,-1;no_kab "NO_KAB" true true false 4 Long 0 10,First,#,data_fs_kec,no_kab,-1,-1;no_kec "NO_KEC" true true false 4 Long 0 10,First,#,data_fs_kec,no_kec,-1,-1;kode_prop_spatial "KODE_PROP_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kec,kode_prop_spatial,-1,-1;kode_kab_spatial "KODE_KAB_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kec,kode_kab_spatial,-1,-1;kode_kec_spatial "KODE_KEC_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kec,kode_kec_spatial,-1,-1;nama_prop "NAMA_PROP" true true false 8000 Text 0 0,First,#,data_fs_kec,nama_prop,0,8000;nama_kab "NAMA_KAB" true true false 8000 Text 0 0,First,#,data_fs_kec,nama_kab,0,8000;nama_kec "NAMA_KEC" true true false 8000 Text 0 0,First,#,data_fs_kec,nama_kec,0,8000;st_area(shape) "st_area(shape)" false false true 0 Double 0 0,First,#,data_fs_kec,st_area(shape),-1,-1;st_length(shape) "st_length(shape)" false false true 0 Double 0 0,First,#,data_fs_kec,st_length(shape),-1,-1', '')
-			
-			logProcess.logging_process_info("Success to create intermediate table {}.".format(int_table_kec))
+				logProcess.logging_process_error("Error to connect database")
+				raise(e)
 
-			# Join table to feature class
-			logProcess.logging_process_info("Joining table to feature class...")
-
-			input_kec = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_KEC_FIX'
-			join_kec = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_202202_KEC_FIX'
-			arcpy.management.JoinField(input_kec, "kode_kec_spatial", join_kec, "kode_kec_spatial", None)
-
-			logProcess.logging_process_info("Success to join table between {} & {}.".format(int_table_kec, table_name))
+			# Truncate table
+			try:
+				cursor = db_conn.cursor()
+				cursor.execute("DELETE FROM GISKEMENDAGRI.SDE.AGR_VISUAL_KEC_FIX")
+				rows_deleted = cursor.rowcount
+				db_conn.commit()
+				cursor.close()
+				logProcess.logging_process_info("Success to delete {} data.".format(rows_deleted))
+			except (Exception, psycopg2.DatabaseError) as e:
+				raise(e)
+			finally:
+				if db_conn is not None:
+					db_conn.close()
+			return rows_deleted
 			
 		else:
-			# Delete current data
+			# Create connection to database
 			try:
-				arcpy.Delete_management(r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_KEL_FIX')
-				logProcess.logging_process_info('Success to delete AGR_VISUAL_KEL_FIX table.')
+				db_conn = psycopg2.connect(database="giskemendagri", user="sde", password="Gis12345", host="gisdb.dukcapil.kemendagri.go.id", port="5433")
+				logProcess.logging_process_info("Success to connect database giskemendagri.")
 			except Exception as e:
-				logProcess.logging_process_error("Can't delete AGR_VISUAL_KEL_FIX data.")
-				pass
-		
-			# Create Intermediate Table - KELURAHAN
-			data_fs_kel = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.Batas_Administrasi_BIG_2023\giskemendagri.sde.Batas_Kelurahan_2023'
-			int_table_kel = 'AGR_VISUAL_KEL_FIX'
-			
-			arcpy.conversion.FeatureClassToFeatureClass(data_fs_kel, output_gdb, int_table_kel, '', 'objectid "OBJECTID" true true false 4 Long 0 10,First,#,data_fs_kec,objectid,-1,-1;no_prop "NO_PROP" true true false 4 Long 0 10,First,#,data_fs_kec,no_prop,-1,-1;no_kab "NO_KAB" true true false 4 Long 0 10,First,#,data_fs_kec,no_kab,-1,-1;no_kec "NO_KEC" true true false 4 Long 0 10,First,#,data_fs_kec,no_kec,-1,-1;kode_prop_spatial "KODE_PROP_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kec,kode_prop_spatial,-1,-1;kode_kab_spatial "KODE_KAB_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kec,kode_kab_spatial,-1,-1;kode_kec_spatial "KODE_KEC_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kec,kode_kec_spatial,-1,-1;nama_prop "NAMA_PROP" true true false 8000 Text 0 0,First,#,data_fs_kec,nama_prop,0,8000;nama_kab "NAMA_KAB" true true false 8000 Text 0 0,First,#,data_fs_kec,nama_kab,0,8000;nama_kec "NAMA_KEC" true true false 8000 Text 0 0,First,#,data_fs_kec,nama_kec,0,8000;st_area(shape) "st_area(shape)" false false true 0 Double 0 0,First,#,data_fs_kec,st_area(shape),-1,-1;st_length(shape) "st_length(shape)" false false true 0 Double 0 0,First,#,data_fs_kec,st_length(shape),-1,-1', '')
-			
-			logProcess.logging_process_info("Success to create intermediate table {}.".format(int_table_kel))
+				logProcess.logging_process_error("Error to connect database")
+				raise(e)
 
-			# Join table to feature class
-			logProcess.logging_process_info("Joining table to feature class...")
-
-			input_kel = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_KEL_FIX'
-			join_kel = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.AGR_VISUAL_202202_KEL_FIX'
-			arcpy.management.JoinField(input_kel, "kode_desa_spatial", join_kel, "kode_desa_spatial", None)
-
-			logProcess.logging_process_info("Success to join table between {} & {}.".format(int_table_kel, table_name))
+			# Truncate table
+			try:
+				cursor = db_conn.cursor()
+				cursor.execute("DELETE FROM GISKEMENDAGRI.SDE.AGR_VISUAL_KEL_FIX")
+				rows_deleted = cursor.rowcount
+				db_conn.commit()
+				cursor.close()
+				logProcess.logging_process_info("Success to delete {} data.".format(rows_deleted))
+			except (Exception, psycopg2.DatabaseError) as e:
+				raise(e)
+			finally:
+				if db_conn is not None:
+					db_conn.close()
+			return rows_deleted
 			
 
 if __name__ == "__main__":
