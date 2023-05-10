@@ -11,7 +11,7 @@ arcpy.env.overwriteOutput = True
 
 upload_file = arcpy.GetParameterAsText(0)
 
-output_gdb = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde' #r'C:\Users\Administrator\Documents\ArcGIS\Projects\DEV_Dukcapil\DEV_Dukcapil.gdb'
+output_gdb = arcpy.env.workspace = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde' #r'C:\Users\Administrator\Documents\ArcGIS\Projects\DEV_Dukcapil\DEV_Dukcapil.gdb'
 
 class logProcess():
 	def logging_process_info(message):
