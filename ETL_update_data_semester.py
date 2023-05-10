@@ -3,7 +3,7 @@ import csv
 import datetime
 import glob
 import os
-import os.path
+# import os.path
 import psycopg2
 import sys
 
