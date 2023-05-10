@@ -79,8 +79,8 @@ class uploadFile():
 			# Join table to feature class
 			logProcess.logging_process_info("Joining table to feature class...")
 
-			input_prop = os.path.join(output_gdb, '\giskemendagri.sde.INT_AGR_VISUAL_PROP')
-			join_prop = os.path.join(output_gdb, '\giskemendagri.sde.AGR_VISUAL_202202_PROP_FIX')
+			input_prop = os.path.join(output_gdb, 'giskemendagri.sde.INT_AGR_VISUAL_PROP')
+			join_prop = os.path.join(output_gdb, 'giskemendagri.sde.AGR_VISUAL_202202_PROP_FIX')
 			arcpy.management.JoinField(input_prop, "no_prop", join_prop, "no_prop", None)
 
 			logProcess.logging_process_info("Success to join table between {} & {}.".format(int_table_prop, table_name))
