@@ -106,8 +106,8 @@ class uploadFile():
 				raise(e)
 		
 			# Append data to feature service
-			FS_AGR_PROP = os.path.join(output_gdb, 'giskemendagri.sde.AGR_VISUAL_PROP_FIX')
 			try:
+				FS_AGR_PROP = os.path.join(output_gdb, 'giskemendagri.sde.AGR_VISUAL_PROP_FIX')
 				arcpy.management.Append(input_prop, FS_AGR_PROP, "NO_TEST", r'no_prop "NO_PROP" true true false 4 Long 0 10,First,#,input_prop,no_prop,-1,-1;nama_prop "NAMA_PROP" true true false 8000 Text 0 0,First,#,input_prop,nama_prop,0,8000;jumlah_kabupaten "JUMLAH_KABUPATEN" true true false 4 Long 0 10,First,#,input_prop,jumlah_kabupaten,-1,-1;jumlah_kota "JUMLAH_KOTA" true true false 4 Long 0 10,First,#,input_prop,jumlah_kota,-1,-1;jumlah_kecamatan "JUMLAH_KECAMATAN" true true false 4 Long 0 10,First,#,input_prop,jumlah_kecamatan,-1,-1;jumlah_desa "JUMLAH_DESA" true true false 4 Long 0 10,First,#,input_prop,jumlah_desa,-1,-1;jumlah_kelurahan "JUMLAH_KELURAHAN" true true false 4 Long 0 10,First,#,input_prop,jumlah_kelurahan,-1,-1;jumlah_penduduk "JUMLAH_PENDUDUK" true true false 4 Long 0 10,First,#,input_prop,jumlah_penduduk,-1,-1;jumlah_kk "JUMLAH_KK" true true false 4 Long 0 10,First,#,input_prop,jumlah_kk,-1,-1;luas_wilayah "LUAS_WILAYAH" true true false 8 Double 8 38,First,#,input_prop,luas_wilayah,-1,-1;kepadatan_penduduk "KEPADATAN_PENDUDUK" true true false 4 Long 0 10,First,#,input_prop,kepadatan_penduduk,-1,-1;perpindahan_pddk "PERPINDAHAN_PDDK" true true false 4 Long 0 10,First,#,input_prop,perpindahan_pddk,-1,-1;jml_meninggal "JML_MENINGGAL" true true false 4 Long 0 10,First,#,input_prop,jml_meninggal,-1,-1;perubahan_data "PERUBAHAN_DATA" true true false 4 Long 0 10,First,#,input_prop,perubahan_data,-1,-1;jml_wktp "JML_WKTP" true true false 4 Long 0 10,First,#,input_prop,jml_wktp,-1,-1;jml_rekam_wktp "JML_REKAM_WKTP" true true false 4 Long 0 10,First,#,input_prop,jml_rekam_wktp,-1,-1;field1 "FIELD1" true true false 8000 Text 0 0,First,#,input_prop,field1,0,8000;field2 "FIELD2" true true false 8000 Text 0 0,First,#,input_prop,field2,0,8000;islam "ISLAM" true true false 4 Long 0 10,First,#,input_prop,islam,-1,-1;kristen "KRISTEN" true true false 4 Long 0 10,First,#,input_prop,kristen,-1,-1;katholik "KATHOLIK" true true false 4 Long 0 10,First,#,input_prop,katholik,-1,-1;hindu "HINDU" true true false 4 Long 0 10,First,#,input_prop,hindu,-1,-1;budha "BUDHA" true true false 4 Long 0 10,First,#,input_prop,budha,-1,-1;konghucu "KONGHUCU" true true false 4 Long 0 10,First,#,input_prop,konghucu,-1,-1;kepercayaan "KEPERCAYAAN" true true false 4 Long 0 10,First,#,input_prop,kepercayaan,-1,-1;field3 "FIELD3" true true false 8000 Text 0 0,First,#,input_prop,field3,0,8000;field4 "FIELD4" true true false 8000 Text 0 0,First,#,input_prop,field4,0,8000;pria "PRIA" true true false 4 Long 0 10,First,#,input_prop,pria,-1,-1;wanita "WANITA" true true false 4 Long 0 10,First,#,input_prop,wanita,-1,-1;field5 "FIELD5" true true false 8000 Text 0 0,First,#,input_prop,field5,0,8000;field6 "FIELD6" true true false 8000 Text 0 0,First,#,input_prop,field6,0,8000;belum_kawin "BELUM_KAWIN" true true false 4 Long 0 10,First,#,input_prop,belum_kawin,-1,-1;kawin "KAWIN" true true false 4 Long 0 10,First,#,input_prop,kawin,-1,-1;cerai_hidup "CERAI_HIDUP" true true false 4 Long 0 10,First,#,input_prop,cerai_hidup,-1,-1;cerai_mati "CERAI_MATI" true true false 4 Long 0 10,First,#,input_prop,cerai_mati,-1,-1;field7 "FIELD7" true true false 8000 Text 0 0,First,#,input_prop,field7,0,8000;field8 "FIELD8" true true false 8000 Text 0 0,First,#,input_prop,field8,0,8000;u0 "U0" true true false 4 Long 0 10,First,#,input_prop,u0,-1,-1;u5 "U5" true true false 4 Long 0 10,First,#,input_prop,u5,-1,-1;u10 "U10" true true false 4 Long 0 10,First,#,input_prop,u10,-1,-1;u15 "U15" true true false 4 Long 0 10,First,#,input_prop,u15,-1,-1;u20 "U20" true true false 4 Long 0 10,First,#,input_prop,u20,-1,-1;u25 "U25" true true false 4 Long 0 10,First,#,input_prop,u25,-1,-1;u30 "U30" true true false 4 Long 0 10,First,#,input_prop,u30,-1,-1;u35 "U35" true true false 4 Long 0 10,First,#,input_prop,u35,-1,-1;u40 "U40" true true false 4 Long 0 10,First,#,input_prop,u40,-1,-1;u45 "U45" true true false 4 Long 0 10,First,#,input_prop,u45,-1,-1;u50 "U50" true true false 4 Long 0 10,First,#,input_prop,u50,-1,-1;u55 "U55" true true false 4 Long 0 10,First,#,input_prop,u55,-1,-1;u60 "U60" true true false 4 Long 0 10,First,#,input_prop,u60,-1,-1;u65 "U65" true true false 4 Long 0 10,First,#,input_prop,u65,-1,-1;u70 "U70" true true false 4 Long 0 10,First,#,input_prop,u70,-1,-1;u75 "U75" true true false 4 Long 0 10,First,#,input_prop,u75,-1,-1;field9 "FIELD9" true true false 8000 Text 0 0,First,#,input_prop,field9,0,8000;field10 "FIELD10" true true false 8000 Text 0 0,First,#,input_prop,field10,0,8000;lhr_2018 "LHR_2018" true true false 4 Long 0 10,First,#,input_prop,lhr_2018,-1,-1;lhr_sebelum_2018 "LHR_SEBELUM_2018" true true false 4 Long 0 10,First,#,input_prop,lhr_sebelum_2018,-1,-1;lhr_2019 "LHR_2019" true true false 4 Long 0 10,First,#,input_prop,lhr_2019,-1,-1;lhr_sebelum_2019 "LHR_SEBELUM_2019" true true false 4 Long 0 10,First,#,input_prop,lhr_sebelum_2019,-1,-1;lhr_2020 "LHR_2020" true true false 4 Long 0 10,First,#,input_prop,lhr_2020,-1,-1;lhr_sebelum_2020 "LHR_SEBELUM_2020" true true false 4 Long 0 10,First,#,input_prop,lhr_sebelum_2020,-1,-1;lhr_2021 "LHR_2021" true true false 4 Long 0 10,First,#,input_prop,lhr_2021,-1,-1;lhr_sebelum_2021 "LHR_SEBELUM_2021" true true false 4 Long 0 10,First,#,input_prop,lhr_sebelum_2021,-1,-1;lhr_2022 "LHR_2022" true true false 4 Long 0 10,First,#,input_prop,lhr_2022,-1,-1;lhr_sebelum_2022 "LHR_SEBELUM_2022" true true false 4 Long 0 10,First,#,input_prop,lhr_sebelum_2022,-1,-1;pertumbuhan_2018 "PERTUMBUHAN_2018" true true false 4 Long 0 10,First,#,input_prop,pertumbuhan_2018,-1,-1;pertumbuhan_2019 "PERTUMBUHAN_2019" true true false 4 Long 0 10,First,#,input_prop,pertumbuhan_2019,-1,-1;pertumbuhan_2020 "PERTUMBUHAN_2020" true true false 4 Long 0 10,First,#,input_prop,pertumbuhan_2020,-1,-1;pertumbuhan_2021 "PERTUMBUHAN_2021" true true false 4 Long 0 10,First,#,input_prop,pertumbuhan_2021,-1,-1;pertumbuhan_2022 "PERTUMBUHAN_2022" true true false 4 Long 0 10,First,#,input_prop,pertumbuhan_2022,-1,-1;field11 "FIELD11" true true false 8000 Text 0 0,First,#,input_prop,field11,0,8000;field12 "FIELD12" true true false 8000 Text 0 0,First,#,input_prop,field12,0,8000;usia_sekolah5_6 "USIA_SEKOLAH5_6" true true false 4 Long 0 10,First,#,input_prop,usia_sekolah5_6,-1,-1;usia_sekolah7_12 "USIA_SEKOLAH7_12" true true false 4 Long 0 10,First,#,input_prop,usia_sekolah7_12,-1,-1;usia_sekolah12_15 "USIA_SEKOLAH12_15" true true false 4 Long 0 10,First,#,input_prop,usia_sekolah12_15,-1,-1;usia_sekolah16_18 "USIA_SEKOLAH16_18" true true false 4 Long 0 10,First,#,input_prop,usia_sekolah16_18,-1,-1;field13 "FIELD13" true true false 8000 Text 0 0,First,#,input_prop,field13,0,8000;field14 "FIELD14" true true false 8000 Text 0 0,First,#,input_prop,field14,0,8000;tidak_blm_sekolah "TIDAK_BLM_SEKOLAH" true true false 4 Long 0 10,First,#,input_prop,tidak_blm_sekolah,-1,-1;belum_tamat_sd "BELUM_TAMAT_SD" true true false 4 Long 0 10,First,#,input_prop,belum_tamat_sd,-1,-1;tamat_sd "TAMAT_SD" true true false 4 Long 0 10,First,#,input_prop,tamat_sd,-1,-1;sltp "SLTP" true true false 4 Long 0 10,First,#,input_prop,sltp,-1,-1;slta "SLTA" true true false 4 Long 0 10,First,#,input_prop,slta,-1,-1;d1_dan_d2 "D1_DAN_D2" true true false 4 Long 0 10,First,#,input_prop,d1_dan_d2,-1,-1;d3 "D3" true true false 4 Long 0 10,First,#,input_prop,d3,-1,-1;s1 "S1" true true false 4 Long 0 10,First,#,input_prop,s1,-1,-1;s2 "S2" true true false 4 Long 0 10,First,#,input_prop,s2,-1,-1;s3 "S3" true true false 4 Long 0 10,First,#,input_prop,s3,-1,-1;field15 "FIELD15" true true false 8000 Text 0 0,First,#,input_prop,field15,0,8000;field16 "FIELD16" true true false 8000 Text 0 0,First,#,input_prop,field16,0,8000;o "O" true true false 4 Long 0 10,First,#,input_prop,o,-1,-1;b_ "B-" true true false 4 Long 0 10,First,#,input_prop,b_,-1,-1;b1 "B+" true true false 4 Long 0 10,First,#,input_prop,b1,-1,-1;o_ "O+" true true false 4 Long 0 10,First,#,input_prop,o_,-1,-1;ab_ "AB-" true true false 4 Long 0 10,First,#,input_prop,ab_,-1,-1;a "A" true true false 4 Long 0 10,First,#,input_prop,a,-1,-1;tidak_tahu "TIDAK_TAHU" true true false 4 Long 0 10,First,#,input_prop,tidak_tahu,-1,-1;ab1 "AB+" true true false 4 Long 0 10,First,#,input_prop,ab1,-1,-1;a_ "A+" true true false 4 Long 0 10,First,#,input_prop,a_,-1,-1;a1 "A-" true true false 4 Long 0 10,First,#,input_prop,a1,-1,-1;o1 "O-" true true false 4 Long 0 10,First,#,input_prop,o1,-1,-1;b "B" true true false 4 Long 0 10,First,#,input_prop,b,-1,-1;ab "AB" true true false 4 Long 0 10,First,#,input_prop,ab,-1,-1;field17 "FIELD17" true true false 8000 Text 0 0,First,#,input_prop,field17,0,8000;field18 "FIELD18" true true false 8000 Text 0 0,First,#,input_prop,field18,0,8000;pensiunan "PENSIUNAN" true true false 4 Long 0 10,First,#,input_prop,pensiunan,-1,-1;mengurus_rumah_tangga "MENGURUS_RUMAH_TANGGA" true true false 4 Long 0 10,First,#,input_prop,mengurus_rumah_tangga,-1,-1;belum_tidak_bekerja "BELUM_TIDAK_BEKERJA" true true false 4 Long 0 10,First,#,input_prop,belum_tidak_bekerja,-1,-1;lainnya "LAINNYA" true true false 4 Long 0 10,First,#,input_prop,lainnya,-1,-1;perdagangan "PERDAGANGAN" true true false 4 Long 0 10,First,#,input_prop,perdagangan,-1,-1;perawat "PERAWAT" true true false 4 Long 0 10,First,#,input_prop,perawat,-1,-1;nelayan "NELAYAN" true true false 4 Long 0 10,First,#,input_prop,nelayan,-1,-1;pelajar_mahasiswa "PELAJAR_MAHASISWA" true true false 4 Long 0 10,First,#,input_prop,pelajar_mahasiswa,-1,-1;guru "GURU" true true false 4 Long 0 10,First,#,input_prop,guru,-1,-1;wiraswasta "WIRASWASTA" true true false 4 Long 0 10,First,#,input_prop,wiraswasta,-1,-1;pengacara "PENGACARA" true true false 4 Long 0 10,First,#,input_prop,pengacara,-1,-1;field19 "FIELD19" true true false 8000 Text 0 0,First,#,input_prop,field19,0,8000;field20 "FIELD20" true true false 8000 Text 0 0,First,#,input_prop,field20,0,8000', '', '')
 				logProcess.logging_process_info("Success to append new data to feature service.")
 			except Exception as e:
@@ -115,6 +115,23 @@ class uploadFile():
 				raise(e)
 
 		elif area_level == 'KAB':
+			# Create Intermediate Table - KABUPATEN
+			data_fs_kab = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.Batas_Administrasi_BIG_2023\giskemendagri.sde.Batas_Kabupaten_2023'
+			int_table_kab = 'INT_AGR_VISUAL_KAB'
+			
+			arcpy.conversion.FeatureClassToFeatureClass(data_fs_kab, output_gdb, int_table_kab, '', 'no_prop "NO_PROP" true true false 4 Long 0 10,First,#,data_fs_kab,no_prop,-1,-1;no_kab "NO_KAB" true true false 4 Long 0 10,First,#,data_fs_kab,no_kab,-1,-1;kode_prop_spatial "KODE_PROP_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kab,kode_prop_spatial,-1,-1;kode_kab_spatial "KODE_KAB_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kab,kode_kab_spatial,-1,-1;jumlah_desa "JUMLAH_DESA" true true false 4 Long 0 10,First,#,data_fs_kab,jumlah_desa,-1,-1;jumlah_kelurahan "JUMLAH_KELURAHAN" true true false 4 Long 0 10,First,#,data_fs_kab,jumlah_kelurahan,-1,-1;nama_prop "NAMA_PROP" true true false 8000 Text 0 0,First,#,data_fs_kab,nama_prop,0,8000;nama_kab "NAMA_KAB" true true false 8000 Text 0 0,First,#,data_fs_kab,nama_kab,0,8000;st_area(shape) "st_area(shape)" false false true 0 Double 0 0,First,#,data_fs_kab,st_area(shape),-1,-1;st_length(shape) "st_length(shape)" false false true 0 Double 0 0,First,#,data_fs_kab,st_length(shape),-1,-1', '')
+			
+			logProcess.logging_process_info("Success to create intermediate table {}.".format(int_table_kab))
+
+			# Join table to feature class
+			logProcess.logging_process_info("Joining table to feature class...")
+
+			input_kab = os.path.join(output_gdb, 'giskemendagri.sde.INT_AGR_VISUAL_KAB')
+			join_kab = os.path.join(output_gdb, 'giskemendagri.sde.AGR_VISUAL_202202_KAB_FIX')
+			arcpy.management.JoinField(input_kab, "kode_kab_spatial", join_kab, "kode_kab_spatial", None)
+
+			logProcess.logging_process_info("Success to join table between {} & {}.".format(int_table_kab, table_name))
+
 			# Create connection to database
 			try:
 				db_conn = psycopg2.connect(database="giskemendagri", user="sde", password="Gis12345", host="gisdb.dukcapil.kemendagri.go.id", port="5433")
@@ -131,14 +148,28 @@ class uploadFile():
 				db_conn.commit()
 				cursor.close()
 				logProcess.logging_process_info("Success to delete {} data.".format(rows_deleted))
+				db_conn.close()
 			except (Exception, psycopg2.DatabaseError) as e:
 				raise(e)
-			finally:
-				if db_conn is not None:
-					db_conn.close()
-			return rows_deleted
 			
 		elif area_level == 'KEC':
+			# Create Intermediate Table - KECAMATAN
+			data_fs_kec = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.Batas_Administrasi_BIG_2023\giskemendagri.sde.Batas_Kecamatan_2023'
+			int_table_kec = 'INT_AGR_VISUAL_KEC'
+
+			arcpy.conversion.FeatureClassToFeatureClass(data_fs_kec, output_gdb, int_table_kec, '', 'objectid "OBJECTID" true true false 4 Long 0 10,First,#,data_fs_kec,objectid,-1,-1;no_prop "NO_PROP" true true false 4 Long 0 10,First,#,data_fs_kec,no_prop,-1,-1;no_kab "NO_KAB" true true false 4 Long 0 10,First,#,data_fs_kec,no_kab,-1,-1;no_kec "NO_KEC" true true false 4 Long 0 10,First,#,data_fs_kec,no_kec,-1,-1;kode_prop_spatial "KODE_PROP_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kec,kode_prop_spatial,-1,-1;kode_kab_spatial "KODE_KAB_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kec,kode_kab_spatial,-1,-1;kode_kec_spatial "KODE_KEC_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kec,kode_kec_spatial,-1,-1;nama_prop "NAMA_PROP" true true false 8000 Text 0 0,First,#,data_fs_kec,nama_prop,0,8000;nama_kab "NAMA_KAB" true true false 8000 Text 0 0,First,#,data_fs_kec,nama_kab,0,8000;nama_kec "NAMA_KEC" true true false 8000 Text 0 0,First,#,data_fs_kec,nama_kec,0,8000;st_area(shape) "st_area(shape)" false false true 0 Double 0 0,First,#,data_fs_kec,st_area(shape),-1,-1;st_length(shape) "st_length(shape)" false false true 0 Double 0 0,First,#,data_fs_kec,st_length(shape),-1,-1', '')
+
+			logProcess.logging_process_info("Success to create intermediate table {}.".format(int_table_kec))
+
+			# Join table to feature class
+			logProcess.logging_process_info("Joining table to feature class...")
+
+			input_kec = os.path.join(output_gdb, 'giskemendagri.sde.AGR_VISUAL_KEC_FIX')
+			join_kec = os.path.join(output_gdb, 'giskemendagri.sde.AGR_VISUAL_202202_KEC_FIX')
+			arcpy.management.JoinField(input_kec, "kode_kec_spatial", join_kec, "kode_kec_spatial", None)
+
+			logProcess.logging_process_info("Success to join table between {} & {}.".format(int_table_kec, table_name))
+
 			# Create connection to database
 			try:
 				db_conn = psycopg2.connect(database="giskemendagri", user="sde", password="Gis12345", host="gisdb.dukcapil.kemendagri.go.id", port="5433")
@@ -155,14 +186,28 @@ class uploadFile():
 				db_conn.commit()
 				cursor.close()
 				logProcess.logging_process_info("Success to delete {} data.".format(rows_deleted))
+				db_conn.close()
 			except (Exception, psycopg2.DatabaseError) as e:
 				raise(e)
-			finally:
-				if db_conn is not None:
-					db_conn.close()
-			return rows_deleted
 			
 		else:
+			# Create Intermediate Table - KELURAHAN
+			data_fs_kel = r'C:\Users\Administrator\AppData\Roaming\ESRI\Desktop10.8\ArcCatalog\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.Batas_Administrasi_BIG_2023\giskemendagri.sde.Batas_Kelurahan_2023'
+			int_table_kel = 'INT_AGR_VISUAL_KEL'
+
+			arcpy.conversion.FeatureClassToFeatureClass(data_fs_kel, output_gdb, int_table_kel, '', 'objectid "OBJECTID" true true false 4 Long 0 10,First,#,data_fs_kec,objectid,-1,-1;no_prop "NO_PROP" true true false 4 Long 0 10,First,#,data_fs_kec,no_prop,-1,-1;no_kab "NO_KAB" true true false 4 Long 0 10,First,#,data_fs_kec,no_kab,-1,-1;no_kec "NO_KEC" true true false 4 Long 0 10,First,#,data_fs_kec,no_kec,-1,-1;kode_prop_spatial "KODE_PROP_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kec,kode_prop_spatial,-1,-1;kode_kab_spatial "KODE_KAB_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kec,kode_kab_spatial,-1,-1;kode_kec_spatial "KODE_KEC_SPATIAL" true true false 4 Long 0 10,First,#,data_fs_kec,kode_kec_spatial,-1,-1;nama_prop "NAMA_PROP" true true false 8000 Text 0 0,First,#,data_fs_kec,nama_prop,0,8000;nama_kab "NAMA_KAB" true true false 8000 Text 0 0,First,#,data_fs_kec,nama_kab,0,8000;nama_kec "NAMA_KEC" true true false 8000 Text 0 0,First,#,data_fs_kec,nama_kec,0,8000;st_area(shape) "st_area(shape)" false false true 0 Double 0 0,First,#,data_fs_kec,st_area(shape),-1,-1;st_length(shape) "st_length(shape)" false false true 0 Double 0 0,First,#,data_fs_kec,st_length(shape),-1,-1', '')
+
+			logProcess.logging_process_info("Success to create intermediate table {}.".format(int_table_kel))
+
+			# Join table to feature class
+			logProcess.logging_process_info("Joining table to feature class...")
+
+			input_kel = os.path.join(output_gdb, 'giskemendagri.sde.AGR_VISUAL_KEL_FIX')
+			join_kel = os.path.join(output_gdb, 'giskemendagri.sde.AGR_VISUAL_202202_KEL_FIX')
+			arcpy.management.JoinField(input_kel, "kode_desa_spatial", join_kel, "kode_desa_spatial", None)
+
+			logProcess.logging_process_info("Success to join table between {} & {}.".format(int_table_kel, table_name))
+
 			# Create connection to database
 			try:
 				db_conn = psycopg2.connect(database="giskemendagri", user="sde", password="Gis12345", host="gisdb.dukcapil.kemendagri.go.id", port="5433")
@@ -179,12 +224,9 @@ class uploadFile():
 				db_conn.commit()
 				cursor.close()
 				logProcess.logging_process_info("Success to delete {} data.".format(rows_deleted))
+				db_conn.close()
 			except (Exception, psycopg2.DatabaseError) as e:
 				raise(e)
-			finally:
-				if db_conn is not None:
-					db_conn.close()
-			return rows_deleted
 			
 
 if __name__ == "__main__":
