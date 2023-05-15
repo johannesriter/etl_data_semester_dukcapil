@@ -173,7 +173,7 @@ class uploadFile():
 			# Join table to feature class
 			logProcess.logging_process_info("Joining table to feature class...")
 
-			input_kec = os.path.join(output_gdb, 'giskemendagri.sde.INT_AGR_VISUAL_KEC_FIX')
+			input_kec = os.path.join(output_gdb, 'giskemendagri.sde.INT_AGR_VISUAL_KEC')
 			join_kec = os.path.join(output_gdb, 'giskemendagri.sde.AGR_VISUAL_202202_KEC_FIX')
 			arcpy.management.JoinField(input_kec, "kode_kec_spatial", join_kec, "kode_kec_spatial", None)
 
