@@ -9,7 +9,12 @@ import sys
 
 arcpy.env.overwriteOutput = True
 
-upload_file = arcpy.GetParameterAsText(0)
+# upload_file = arcpy.GetParameterAsText(0)
+destination_folder = r'D:\test_update_folder'
+file_type = r'/*csv'
+files = glob.glob(destination_folder + file_type)
+upload_file = max(files, key=os.path.getctime)
+arcpy.AddMessage(upload_file)
 
 output_gdb = arcpy.env.workspace = r'C:\Users\Administrator\db_connection\sde@gisdb.dukcapil.kemendagri.go.id.sde'
 
