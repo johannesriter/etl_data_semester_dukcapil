@@ -42,8 +42,8 @@ class ExampleHandler(FileSystemEventHandler):
 logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s - %(message)s',
                         datefmt='%Y-%m-%d %H:%M:%S')
-# path = monitor_folder #(ORIGINAL)
-path = sys.argv[1] if len(sys.argv) > 1 else '.'
+path = monitor_folder #(ORIGINAL)
+# path = sys.argv[1] if len(sys.argv) > 1 else '.'
 observer = PollingObserver() #Observer()
 event_handler = ExampleHandler() # create event handler (ORIGINAL)
 # event_handler = LoggingEventHandler() # create event handler
@@ -56,8 +56,8 @@ observer.start()
 # sleep until keyboard interrupt, then stop + rejoin the observer
 try:
     while True:
-        # time.sleep(0.00000001) #(ORIGINAL)
-        time.sleep(5)
+        time.sleep(0.00000001) #(ORIGINAL)
+        # time.sleep(5)
 except KeyboardInterrupt:
     print ('Shutting down monitoring folder system')
     observer.stop()
