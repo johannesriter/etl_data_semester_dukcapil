@@ -11,7 +11,7 @@ arcpy.env.overwriteOutput = True
 
 # upload_file = arcpy.GetParameterAsText(0)
 destination_folder = r'\\otomasi.dukcapil.kemendagri.go.id\otomasi'
-file_type = r'/*csv'
+file_type = r'\*csv'
 files = glob.glob(destination_folder + file_type)
 upload_file = max(files, key=os.path.getctime)
 arcpy.AddMessage(upload_file)
