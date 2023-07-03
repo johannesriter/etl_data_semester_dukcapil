@@ -10,7 +10,7 @@ from watchdog.observers import Observer
 from watchdog.events import LoggingEventHandler, FileSystemEventHandler
 from watchdog.observers.polling import PollingObserver
 
-monitor_folder = r'D:\test_update_folder'
+monitor_folder = r'\\otomasi.dukcapil.kemendagri.go.id\otomasi'
 
 class ExampleHandler(FileSystemEventHandler):
     def on_created(self, event): # when file is created
