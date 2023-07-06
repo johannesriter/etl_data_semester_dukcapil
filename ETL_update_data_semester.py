@@ -6,15 +6,26 @@ import os
 # import os.path
 import psycopg2
 import sys
+from watchdog.observers import Observer
+from watchdog.events import LoggingEventHandler, FileSystemEventHandler
+from watchdog.observers.polling import PollingObserver
 
 arcpy.env.overwriteOutput = True
 
 # upload_file = arcpy.GetParameterAsText(0)
 destination_folder = r'\\otomasi.dukcapil.kemendagri.go.id\otomasi'
-file_type = r'\*csv'
-files = glob.glob(destination_folder + file_type)
-upload_file = max(files, key=os.path.getctime)
-arcpy.AddMessage(upload_file)
+
+class ExampleHandler(FileSystemEventHandler):
+	def on_created(self, event): # when file is created
+		fullstring =  event.src_path
+		substring = '.csv'
+		arcpy.AddMessage("Event for current automation: {}".format(fullstring))
+		return fullstring
+
+# file_type = r'\*csv'
+# files = glob.glob(destination_folder + file_type)
+# upload_file = max(files, key=os.path.getctime)
+# arcpy.AddMessage(upload_file)
 
 output_gdb = arcpy.env.workspace = r'C:\Users\Administrator\db_connection\sde@gisdb.dukcapil.kemendagri.go.id.sde'
 
@@ -37,6 +48,8 @@ class logProcess():
 class uploadFile():
 	def create_archiveTable():
 		logProcess.logging_process_info("Uploading file...")
+		upload_file = ExampleHandler.on_created()
+		print(upload_file)
 		file_name = upload_file.split(sep='\\')[-1]
 		table_name = file_name.split(sep='.')[0]
 		arcpy.AddMessage(table_name)
@@ -66,6 +79,7 @@ class uploadFile():
 			logProcess.logging_process_info('Success to convert {} table.'.format(table_name))
 		
 	def joinTable():
+		upload_file = ExampleHandler.on_created()
 		file_name = upload_file.split(sep='\\')[-1]
 		table_name = file_name.split(sep='.')[0]
 		area_level = table_name.split(sep='_')[-2]
@@ -263,8 +277,13 @@ class uploadFile():
 
 if __name__ == "__main__":
 	try:
+		observer = PollingObserver()
+		event_handler = ExampleHandler()
+		observer.schedule(event_handler, destination_folder, recursive=True)
+		observer.start()
 		uploadFile.create_archiveTable()
 		uploadFile.joinTable()
+		observer.stop()
 	except Exception as e:
 		logProcess.logging_process_error("There's error encountered.")
 		raise(e)
