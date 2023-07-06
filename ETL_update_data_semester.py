@@ -48,7 +48,7 @@ class logProcess():
 class uploadFile():
 	def create_archiveTable():
 		logProcess.logging_process_info("Uploading file...")
-		upload_file = ExampleHandler(FileSystemEventHandler)
+		upload_file = ExampleHandler()
 		print(upload_file)
 		file_name = upload_file.split(sep='\\')[-1]
 		table_name = file_name.split(sep='.')[0]
@@ -79,7 +79,7 @@ class uploadFile():
 			logProcess.logging_process_info('Success to convert {} table.'.format(table_name))
 		
 	def joinTable():
-		upload_file = ExampleHandler(FileSystemEventHandler)
+		upload_file = ExampleHandler()
 		file_name = upload_file.split(sep='\\')[-1]
 		table_name = file_name.split(sep='.')[0]
 		area_level = table_name.split(sep='_')[-2]
