@@ -280,7 +280,6 @@ class ExampleHandler(FileSystemEventHandler):
             
             except Exception as e:
                 print(e)
-                sys.exit(1)
 
         else:
             print ('it is not the exact data')
