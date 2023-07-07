@@ -38,6 +38,7 @@ class ExampleHandler(FileSystemEventHandler):
 
 	@staticmethod
 	def on_any_event(event):
+		print(event.event_type)
 		if event.is_directory:
 			return None
 		
