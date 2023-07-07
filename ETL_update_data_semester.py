@@ -14,10 +14,10 @@ from watchdog.observers.polling import PollingObserver
 arcpy.env.overwriteOutput = True
 
 # upload_file = arcpy.GetParameterAsText(0)
-destination_folder = r'\\otomasi.dukcapil.kemendagri.go.id\otomasi'
+# destination_folder = r'\\otomasi.dukcapil.kemendagri.go.id\otomasi'
 
 class MyWatcher:
-	destination_folder = r'\\otomasi.dukcapil.kemendagri.go.id\otomasi'
+	destination_folder = '\\otomasi.dukcapil.kemendagri.go.id\otomasi'
 
 	def __init__(self):
 		self.observer = PollingObserver()
@@ -305,8 +305,7 @@ class uploadFile():
 if __name__ == "__main__":
 	try:
 		obj = MyWatcher()
-		upload_file = obj.run()
-		print(upload_file)
+		obj.run()
 		# uploadFile.create_archiveTable()
 		# uploadFile.joinTable()
 	except Exception as e:
