@@ -296,6 +296,8 @@ class uploadFile():
 
 if __name__ == "__main__":
 	try:
+		upload_file = MyWatcher.run()
+		print(upload_file)
 		uploadFile.create_archiveTable()
 		uploadFile.joinTable()
 	except Exception as e:
