@@ -304,7 +304,8 @@ class uploadFile():
 
 if __name__ == "__main__":
 	try:
-		upload_file = MyWatcher.run()
+		obj = MyWatcher()
+		upload_file = obj.run()
 		print(upload_file)
 		# uploadFile.create_archiveTable()
 		# uploadFile.joinTable()
