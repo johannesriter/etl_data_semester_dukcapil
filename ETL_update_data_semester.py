@@ -6,6 +6,7 @@ import os
 # import os.path
 import psycopg2
 import sys
+import time
 from watchdog.observers import Observer
 from watchdog.events import LoggingEventHandler, FileSystemEventHandler
 from watchdog.observers.polling import PollingObserver
@@ -15,11 +16,29 @@ arcpy.env.overwriteOutput = True
 # upload_file = arcpy.GetParameterAsText(0)
 destination_folder = r'\\otomasi.dukcapil.kemendagri.go.id\otomasi'
 
+class MyWatcher:
+	destination_folder = r'\\otomasi.dukcapil.kemendagri.go.id\otomasi'
+
+	def __init__(self):
+		self.observer = PollingObserver()
+
+	def run(self):
+		event_handler = ExampleHandler()
+		self.observer.schedule(event_handler, self.destination_folder, recursive=True)
+		self.observer.start()
+		try:
+			while True:
+				time.sleep(1)
+		except:
+			self.observer.stop
+			print("Observer stopped.")
+		self.observer.join()
+
 class ExampleHandler(FileSystemEventHandler):
-	def on_created(self, event): # when file is created
+	def on_created(event): # when file is created
 		fullstring =  event.src_path
 		substring = '.csv'
-		arcpy.AddMessage("Event for current automation: {}".format(fullstring))
+		# arcpy.AddMessage("Event for current automation: {}".format(fullstring))
 		return fullstring
 
 # file_type = r'\*csv'
@@ -48,7 +67,7 @@ class logProcess():
 class uploadFile():
 	def create_archiveTable():
 		logProcess.logging_process_info("Uploading file...")
-		upload_file = ExampleHandler()
+		upload_file = MyWatcher.run()
 		print(upload_file)
 		file_name = upload_file.split(sep='\\')[-1]
 		table_name = file_name.split(sep='.')[0]
@@ -79,7 +98,7 @@ class uploadFile():
 			logProcess.logging_process_info('Success to convert {} table.'.format(table_name))
 		
 	def joinTable():
-		upload_file = ExampleHandler()
+		upload_file = MyWatcher.run()
 		file_name = upload_file.split(sep='\\')[-1]
 		table_name = file_name.split(sep='.')[0]
 		area_level = table_name.split(sep='_')[-2]
@@ -277,13 +296,8 @@ class uploadFile():
 
 if __name__ == "__main__":
 	try:
-		observer = PollingObserver()
-		event_handler = ExampleHandler()
-		observer.schedule(event_handler, destination_folder, recursive=True)
-		observer.start()
 		uploadFile.create_archiveTable()
 		uploadFile.joinTable()
-		observer.stop()
 	except Exception as e:
 		logProcess.logging_process_error("There's error encountered.")
 		raise(e)
