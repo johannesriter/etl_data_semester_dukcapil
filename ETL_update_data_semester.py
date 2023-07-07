@@ -35,11 +35,18 @@ class MyWatcher:
 		self.observer.join()
 
 class ExampleHandler(FileSystemEventHandler):
-	def on_created(event): # when file is created
-		fullstring =  event.src_path
-		substring = '.csv'
+
+	@staticmethod
+	def on_any_event(event):
+		if event.is_directory:
+			return None
+		
+		elif event.event_type == 'created':
+			print("Watchdog received created event - %s." % event.src_path)
+		elif event.event_type == 'modified':
+			print("Watchdog received modified event - %s." % event.src_path)
 		# arcpy.AddMessage("Event for current automation: {}".format(fullstring))
-		return fullstring
+		# return fullstring
 
 # file_type = r'\*csv'
 # files = glob.glob(destination_folder + file_type)
@@ -298,8 +305,8 @@ if __name__ == "__main__":
 	try:
 		upload_file = MyWatcher.run()
 		print(upload_file)
-		uploadFile.create_archiveTable()
-		uploadFile.joinTable()
+		# uploadFile.create_archiveTable()
+		# uploadFile.joinTable()
 	except Exception as e:
 		logProcess.logging_process_error("There's error encountered.")
 		raise(e)
