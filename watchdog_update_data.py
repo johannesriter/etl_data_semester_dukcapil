@@ -82,7 +82,7 @@ class ExampleHandler(FileSystemEventHandler):
                         
                         if area_level == 'PROP':
                             # Create Intermediate Table - PROPINSI
-                            data_fs_prop = os.path.join(output_gdb, 'giskemendagri.sde.Batas_Administrasi_BIG_2023\giskemendagri.sde.Batas_Provinsi_2023')
+                            data_fs_prop = r'C:\Users\Administrator\db_connection\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.Batas_Administrasi_BIG_2023\giskemendagri.sde.Batas_Provinsi_2023'
                             int_table_prop = 'INT_AGR_VISUAL_PROP'
                             
                             arcpy.conversion.FeatureClassToFeatureClass(data_fs_prop, output_gdb, int_table_prop, '', 'no_prop "NO_PROP" true true false 4 Long 0 10,First,#,data_fs_prop,no_prop,-1,-1;nama_prop "NAMA_PROP" true true false 8000 Text 0 0,First,#,data_fs_prop,nama_prop,0,8000;st_area(shape) "st_area(shape)" false false true 0 Double 0 0,First,#,data_fs_prop,st_area(shape),-1,-1;st_length(shape) "st_length(shape)" false false true 0 Double 0 0,First,#,data_fs_prop,st_length(shape),-1,-1', '')
