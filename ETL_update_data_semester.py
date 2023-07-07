@@ -17,7 +17,7 @@ arcpy.env.overwriteOutput = True
 # destination_folder = r'\\otomasi.dukcapil.kemendagri.go.id\otomasi'
 
 class MyWatcher:
-	destination_folder = '\\otomasi.dukcapil.kemendagri.go.id\otomasi'
+	destination_folder = r'\\otomasi.dukcapil.kemendagri.go.id\otomasi'
 
 	def __init__(self):
 		self.observer = PollingObserver()
