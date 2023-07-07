@@ -14,45 +14,11 @@ from watchdog.observers.polling import PollingObserver
 arcpy.env.overwriteOutput = True
 
 # upload_file = arcpy.GetParameterAsText(0)
-# destination_folder = r'\\otomasi.dukcapil.kemendagri.go.id\otomasi'
-
-class MyWatcher:
-	destination_folder = r'\\otomasi.dukcapil.kemendagri.go.id\otomasi'
-
-	def __init__(self):
-		self.observer = PollingObserver()
-
-	def run(self):
-		event_handler = ExampleHandler()
-		self.observer.schedule(event_handler, self.destination_folder, recursive=True)
-		self.observer.start()
-		try:
-			while True:
-				time.sleep(1)
-		except:
-			self.observer.stop
-			print("Observer stopped.")
-		self.observer.join()
-
-class ExampleHandler(FileSystemEventHandler):
-
-	@staticmethod
-	def on_any_event(event):
-		print(event.event_type)
-		if event.is_directory:
-			return None
-		
-		elif event.event_type == 'created':
-			print("Watchdog received created event - %s." % event.src_path)
-		elif event.event_type == 'modified':
-			print("Watchdog received modified event - %s." % event.src_path)
-		# arcpy.AddMessage("Event for current automation: {}".format(fullstring))
-		# return fullstring
-
-# file_type = r'\*csv'
-# files = glob.glob(destination_folder + file_type)
-# upload_file = max(files, key=os.path.getctime)
-# arcpy.AddMessage(upload_file)
+destination_folder = r'\\otomasi.dukcapil.kemendagri.go.id\otomasi'
+file_type = r'\*csv'
+files = glob.glob(destination_folder + file_type)
+upload_file = max(files, key=os.path.getctime)
+arcpy.AddMessage(upload_file)
 
 output_gdb = arcpy.env.workspace = r'C:\Users\Administrator\db_connection\sde@gisdb.dukcapil.kemendagri.go.id.sde'
 
@@ -75,8 +41,6 @@ class logProcess():
 class uploadFile():
 	def create_archiveTable():
 		logProcess.logging_process_info("Uploading file...")
-		upload_file = MyWatcher.run()
-		print(upload_file)
 		file_name = upload_file.split(sep='\\')[-1]
 		table_name = file_name.split(sep='.')[0]
 		arcpy.AddMessage(table_name)
@@ -106,7 +70,6 @@ class uploadFile():
 			logProcess.logging_process_info('Success to convert {} table.'.format(table_name))
 		
 	def joinTable():
-		upload_file = MyWatcher.run()
 		file_name = upload_file.split(sep='\\')[-1]
 		table_name = file_name.split(sep='.')[0]
 		area_level = table_name.split(sep='_')[-2]
@@ -304,10 +267,8 @@ class uploadFile():
 
 if __name__ == "__main__":
 	try:
-		obj = MyWatcher()
-		obj.run()
-		# uploadFile.create_archiveTable()
-		# uploadFile.joinTable()
+		uploadFile.create_archiveTable()
+		uploadFile.joinTable()
 	except Exception as e:
 		logProcess.logging_process_error("There's error encountered.")
 		raise(e)
