@@ -77,6 +77,7 @@ class ExampleHandler(FileSystemEventHandler):
                         file_name = fullstring.split(sep='\\')[-1]
                         table_name = file_name.split(sep='.')[0]
                         area_level = table_name.split(sep='_')[-2]
+                        arcpy.AddMessage(area_level)
                         
                         logProcess.logging_process_info("Generate intermediate table...")
                         
