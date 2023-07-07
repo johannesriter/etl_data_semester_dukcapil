@@ -73,6 +73,7 @@ class ExampleHandler(FileSystemEventHandler):
                             logProcess.logging_process_info('Success to convert {} table.'.format(table_name))
 
                     def joinTable():
+                        output_gdb = arcpy.env.workspace = r'C:\Users\Administrator\db_connection\sde@gisdb.dukcapil.kemendagri.go.id.sde'
                         file_name = fullstring.split(sep='\\')[-1]
                         table_name = file_name.split(sep='.')[0]
                         area_level = table_name.split(sep='_')[-2]
