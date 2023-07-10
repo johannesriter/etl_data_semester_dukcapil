@@ -73,7 +73,6 @@ class ExampleHandler(FileSystemEventHandler):
                             logProcess.logging_process_info('Success to convert {} table.'.format(table_name))
 
                     def joinTable():
-                        output_gdb = r'C:\Users\Administrator\db_connection\sde@gisdb.dukcapil.kemendagri.go.id.sde'
                         file_name = fullstring.split(sep='\\')[-1]
                         table_name = file_name.split(sep='.')[0]
                         area_level = table_name.split(sep='_')[-2]
@@ -83,6 +82,7 @@ class ExampleHandler(FileSystemEventHandler):
                         
                         if area_level == 'PROP':
                             # Create Intermediate Table - PROPINSI
+                            output_gdb = r'C:\Users\Administrator\db_connection\sde@gisdb.dukcapil.kemendagri.go.id.sde'
                             data_fs_prop = r'C:\Users\Administrator\db_connection\sde@gisdb.dukcapil.kemendagri.go.id.sde\giskemendagri.sde.Batas_Administrasi_BIG_2023\giskemendagri.sde.Batas_Provinsi_2023'
                             # int_table_prop = 'INT_AGR_VISUAL_PROP'
                             
