@@ -306,8 +306,8 @@ observer.start()
 # sleep until keyboard interrupt, then stop + rejoin the observer
 try:
     while True:
-        time.sleep(0.00000001) #(ORIGINAL)
-        # time.sleep(5)
+        # time.sleep(0.00000001) #(ORIGINAL)
+        time.sleep(5)
 except KeyboardInterrupt:
     print ('Shutting down monitoring folder system')
     observer.stop()
