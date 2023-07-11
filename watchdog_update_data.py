@@ -31,6 +31,7 @@ class ExampleHandler(FileSystemEventHandler):
                 script_arcgis = r'D:\etl_data_semester_dukcapil\ETL_update_data_semester.py'
                 arguments = ('%s %s'%(python_path, script_arcgis))
                 os.system(arguments)
+                os.remove("current_file.txt")
                 print('Complete, waiting for next data')
             except Exception as e:
                 print(e)

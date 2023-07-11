@@ -14,10 +14,13 @@ from watchdog.observers.polling import PollingObserver
 arcpy.env.overwriteOutput = True
 
 # upload_file = arcpy.GetParameterAsText(0)
-destination_folder = r'\\otomasi.dukcapil.kemendagri.go.id\otomasi'
-file_type = r'\*csv'
-files = glob.glob(destination_folder + file_type)
-upload_file = max(files, key=os.path.getctime)
+# destination_folder = r'\\otomasi.dukcapil.kemendagri.go.id\otomasi'
+# file_type = r'\*csv'
+# files = glob.glob(destination_folder + file_type)
+# upload_file = max(files, key=os.path.getctime)
+# arcpy.AddMessage(upload_file)
+fileObject = open("current_file.txt", "r")
+upload_file = fileObject.read()
 arcpy.AddMessage(upload_file)
 
 output_gdb = arcpy.env.workspace = r'C:\Users\Administrator\db_connection\sde@gisdb.dukcapil.kemendagri.go.id.sde'
