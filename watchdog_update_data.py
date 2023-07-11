@@ -24,6 +24,9 @@ class ExampleHandler(FileSystemEventHandler):
             print('Process data...')
             print('Now processing data {}'.format(fullstring))
             try :
+                txt_file = open("current_file.txt", "w")
+                txt_file.write(fullstring)
+                txt_file.close()
                 python_path = r'C:\Users\Administrator\AppData\Local\ESRI\conda\envs\arcgispro-py3-clone\python.exe'
                 script_arcgis = r'D:\etl_data_semester_dukcapil\ETL_update_data_semester.py'
                 arguments = ('%s %s'%(python_path, script_arcgis))
