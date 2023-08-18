@@ -92,7 +92,7 @@ class uploadFile():
 			logProcess.logging_process_info("Joining table to feature class...")
 
 			input_prop = os.path.join(output_gdb, 'giskemendagri.sde.INT_AGR_VISUAL_PROP')
-			join_prop = os.path.join(output_gdb, 'giskemendagri.sde.AGR_VISUAL_202202_PROP_FIX')
+			join_prop = os.path.join(output_gdb, 'giskemendagri.sde.{}'.format(table_name))
 			arcpy.management.JoinField(input_prop, "no_prop", join_prop, "no_prop", None)
 
 			logProcess.logging_process_info("Success to join table between {} & {}.".format(int_table_prop, table_name))
@@ -139,7 +139,7 @@ class uploadFile():
 			logProcess.logging_process_info("Joining table to feature class...")
 
 			input_kab = os.path.join(output_gdb, 'giskemendagri.sde.INT_AGR_VISUAL_KAB')
-			join_kab = os.path.join(output_gdb, 'giskemendagri.sde.AGR_VISUAL_202202_KAB_FIX')
+			join_kab = os.path.join(output_gdb, 'giskemendagri.sde.{}'.format(table_name))
 			arcpy.management.JoinField(input_kab, "kode_kab_spatial", join_kab, "kode_kab_spatial", None)
 
 			logProcess.logging_process_info("Success to join table between {} & {}.".format(int_table_kab, table_name))
@@ -186,7 +186,7 @@ class uploadFile():
 			logProcess.logging_process_info("Joining table to feature class...")
 
 			input_kec = os.path.join(output_gdb, 'giskemendagri.sde.INT_AGR_VISUAL_KEC')
-			join_kec = os.path.join(output_gdb, 'giskemendagri.sde.AGR_VISUAL_202202_KEC_FIX')
+			join_kec = os.path.join(output_gdb, 'giskemendagri.sde.{}'.format(table_name))
 			arcpy.management.JoinField(input_kec, "kode_kec_spatial", join_kec, "kode_kec_spatial", None)
 
 			logProcess.logging_process_info("Success to join table between {} & {}.".format(int_table_kec, table_name))
@@ -233,7 +233,7 @@ class uploadFile():
 			logProcess.logging_process_info("Joining table to feature class...")
 
 			input_kel = os.path.join(output_gdb, 'giskemendagri.sde.INT_AGR_VISUAL_KEL')
-			join_kel = os.path.join(output_gdb, 'giskemendagri.sde.AGR_VISUAL_202202_KEL_FIX')
+			join_kel = os.path.join(output_gdb, 'giskemendagri.sde.{}'.format(table_name))
 			arcpy.management.JoinField(input_kel, "kode_desa_spatial", join_kel, "kode_desa_spatial", None)
 
 			logProcess.logging_process_info("Success to join table between {} & {}.".format(int_table_kel, table_name))
